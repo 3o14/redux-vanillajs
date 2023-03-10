@@ -31,9 +31,11 @@ const deleteToDo = id => {
 const reducer = (state = [], action) => {
   switch (action.type) {
     case ADD_TODO:
-      return [{ text: action.text, id: Date.now() }, ...state];
+      const newToDo = { text: action.text, id: Date.now() };
+      return [newToDo, ...state];
     case DELETE_TODO:
-      return state.filter(toDo => toDo.id !== action.id); // 삭제할 id가 아닌 것만 남기기
+      const cleanedToDo = state.filter(toDo => toDo.id !== action.id); // 삭제할 id가 아닌 것만 남기기
+      return cleanedToDo;
     default:
       return state;
   }
